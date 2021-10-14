@@ -6,10 +6,21 @@
 #Variables
 \*------------------------------------*/
 
+@font-face {
+    font-family: "Work Sans";
+    font-weight: 400;
+    src: url(../fonts/WorkSans-Regular.woff2);
+}
+
 :root {
     /* colors */
+    --color-front: #CCE7FF;
+    --color-back: #0F3557;
+    --global-color: #0F3557;
+    --global-color__night: #CCE7FF;
 
     /* opacity */
+    --global-opacity: 0.6;
 
     /* transitions */
 }
@@ -25,12 +36,16 @@
 */
 
 html {
+    --backgroundColor: var(--color-front);
     font-size: 16px;
     line-height: 1.5;
-    font-family: Helvetica, arial, sans-serif;
+    font-family: "Work Sans", arial, sans-serif;
+    color: var(--global-color);
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: var(--backgroundColor);
+    font-feature-settings: "zero" 1; 
 }
 
 *,
@@ -249,7 +264,11 @@ input::placeholder {
 */
 
 .c-logo {
-
+    font-size: 16px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 /*
@@ -259,11 +278,14 @@ input::placeholder {
 */
 
 .c-sun {
-
+    --sun-color: var(--global-color);
+    width: 22px;
+    height: 22px;
+    fill: var(--sun-color);
 }
 
 .c-logo .c-sun {
-
+    
 }
 
 /*
@@ -272,11 +294,86 @@ input::placeholder {
     Main app wrapper
 */
 
+.c-app {
+    max-width: 400px;
+    padding: 32px;
+    margin: auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.c-app__summary {
+    font-size: 28px;
+    line-height: 40px;
+}
+
+/*
+    Component: Content
+    ---
+    Page with content
+*/
+
+.c-content {
+    margin-top: auto;
+}
+
 /*
     Component: Horizon
     ---
     Horizon with sun visualisation
 */
+
+.c-horizon {
+    /* margin-bottom: 32px; */
+}
+
+.c-horizon__line {
+    border-top: 1px solid var(--global-color);
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-bottom: 34px;
+}
+
+.c-horizon__time {
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.c-horizon__sky-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+    padding-top: 22px;
+    padding-right: 40px;
+}
+
+.c-horizon__sky {
+    position: relative;
+    height: 100%;
+}
+
+.c-horizon__sun {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    transform: translateY(22px);
+}
+
+.c-horizon__sun::before {
+    content: attr(data-time); 
+    display: block;
+    font-size: 12px;
+    line-height: 14px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+
 
 /*------------------------------------*\
 #UTILITIES
@@ -287,6 +384,10 @@ input::placeholder {
     Mute with opacity
 */
 
+.u-muted {
+    opacity: var(--global-opacity);
+}
+
 /*------------------------------------*\
 #STATES
 \*------------------------------------*/
@@ -296,6 +397,11 @@ input::placeholder {
 */
 
 /* Night version: just switch the light and dark vars */
+.is-night {
+    color: var(--global-color__night);
+    --backgroundColor: var(--color-back);
+    --global-color: var(--global-color__night);
+}
 
 /*------------------------------------*\
 #MEDIA
