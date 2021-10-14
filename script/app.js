@@ -53,7 +53,7 @@ let placeSunAndStartMoving = (sunriseTimestamp, sunsetTimestamp) => {
 	} else {
 		document.documentElement.classList.add('is-day');
 		document.documentElement.classList.remove('is-night');
-		document.querySelector('.js-time-left').innerHTML = diffMinutes;
+		document.querySelector('.js-time-left').innerHTML = `${diffMinutes} minutes`;
 	}
 };
 
